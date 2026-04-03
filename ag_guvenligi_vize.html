@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ağ Yönetimi & Bilgi Güvenliği — Vize Özeti</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080b14;
+    --bg2: #0d1020;
+    --bg3: #121628;
+    --card: #161b2e;
+    --card2: #1c2240;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --text: #e6eaf5;
+    --text2: #8f96b8;
+    --text3: #565d7e;
+    --blue: #4f8ef7;
+    --blue2: #2d6fe0;
+    --cyan: #06b6d4;
+    --teal: #14b8a6;
+    --purple: #8b5cf6;
+    --amber: #f59e0b;
+    --coral: #f97316;
+    --green: #22c55e;
+    --red: #ef4444;
+    --pink: #ec4899;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px;}
+
+  .hero{position:relative;overflow:hidden;padding:68px 32px 52px;text-align:center;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% -10%,rgba(79,142,247,0.16) 0%,transparent 65%);pointer-events:none;}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(79,142,247,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(79,142,247,0.035) 1px,transparent 1px);background-size:44px 44px;}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(79,142,247,0.1);border:1px solid rgba(79,142,247,0.28);border-radius:100px;padding:5px 16px;font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--blue);margin-bottom:20px;letter-spacing:.05em;}
+  .hero h1{font-family:'Syne',sans-serif;font-size:clamp(28px,5vw,50px);font-weight:800;letter-spacing:-.02em;line-height:1.1;background:linear-gradient(135deg,#e6eaf5 30%,#7ab2f8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px;}
+  .hero p{color:var(--text2);font-size:15px;max-width:500px;margin:0 auto 28px;}
+  .hero-stats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;}
+  .stat-num{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--blue);}
+  .stat-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;}
+
+  nav{position:sticky;top:0;z-index:100;background:rgba(8,11,20,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+  .nav-inner{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;max-width:1100px;margin:0 auto;padding:0 24px;}
+  .nav-inner::-webkit-scrollbar{display:none;}
+  .nav-btn{flex-shrink:0;background:none;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:var(--text3);padding:13px 14px;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
+  .nav-btn:hover{color:var(--text);}
+  .nav-btn.active{color:var(--blue);border-bottom-color:var(--blue);}
+
+  .container{max-width:1100px;margin:0 auto;padding:44px 28px;}
+  .section{display:none;animation:fadeIn .3s ease;}
+  .section.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .section-header{display:flex;align-items:center;gap:14px;margin-bottom:32px;}
+  .section-icon{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0;}
+  .section-header h2{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;letter-spacing:-.01em;}
+  .section-header span{display:block;font-size:12px;color:var(--text3);margin-top:2px;}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:border-color .2s,transform .2s;}
+  .card:hover{border-color:var(--border2);transform:translateY(-2px);}
+  .card-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;}
+  th{background:var(--bg3);color:var(--text2);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:9px 13px;text-align:left;}
+  td{padding:9px 13px;border-bottom:1px solid var(--border);color:var(--text2);}
+  tr:last-child td{border-bottom:none;}
+  td:first-child{color:var(--text);}
+  tr:hover td{background:rgba(255,255,255,.025);}
+
+  pre,code{font-family:'JetBrains Mono',monospace;}
+  .code-block{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;font-size:13px;color:#a8d0ff;overflow-x:auto;line-height:1.8;}
+  .kw{color:#c792ea;} .cm{color:#546e7a;font-style:italic;} .num{color:#f78c6c;} .str{color:#c3e88d;} .fn{color:#82aaff;} .type{color:#ffcb6b;}
+
+  .badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.04em;}
+  .badge-blue{background:rgba(79,142,247,.15);color:#93c5fd;border:1px solid rgba(79,142,247,.3);}
+  .badge-green{background:rgba(34,197,94,.12);color:#86efac;border:1px solid rgba(34,197,94,.25);}
+  .badge-amber{background:rgba(245,158,11,.12);color:#fcd34d;border:1px solid rgba(245,158,11,.25);}
+  .badge-red{background:rgba(239,68,68,.12);color:#fca5a5;border:1px solid rgba(239,68,68,.25);}
+  .badge-purple{background:rgba(139,92,246,.12);color:#c4b5fd;border:1px solid rgba(139,92,246,.25);}
+  .badge-cyan{background:rgba(6,182,212,.12);color:#67e8f9;border:1px solid rgba(6,182,212,.25);}
+
+  h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin:28px 0 14px;color:var(--text);}
+  h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin:18px 0 10px;}
+  ul{padding-left:18px;}
+  li{color:var(--text2);margin-bottom:5px;font-size:14px;}
+  li strong{color:var(--text);}
+  p{color:var(--text2);font-size:14px;margin-bottom:10px;}
+
+  .hl{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);border-radius:8px;padding:10px 14px;font-size:13.5px;color:#fcd34d;margin:10px 0;}
+  .hl-red{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:10px 14px;font-size:13.5px;color:#fca5a5;margin:10px 0;}
+  .info-box{background:rgba(79,142,247,.08);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;margin:12px 0;font-size:13.5px;}
+
+  .quiz-q{font-size:14px;font-weight:600;margin-bottom:12px;color:var(--text);}
+  .quiz-opts{display:flex;flex-direction:column;gap:7px;}
+  .quiz-opt{background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:10px 14px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;text-align:left;}
+  .quiz-opt:hover{border-color:var(--border2);color:var(--text);}
+  .quiz-opt.correct{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.4);color:#86efac;}
+  .quiz-opt.wrong{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3);color:#fca5a5;}
+  .quiz-opt.disabled{cursor:default;pointer-events:none;}
+  .quiz-fb{display:none;margin-top:8px;padding:9px 13px;border-radius:8px;font-size:13px;}
+  .quiz-fb.show{display:block;}
+  .quiz-fb.ok{background:rgba(34,197,94,.08);color:#86efac;border:1px solid rgba(34,197,94,.25);}
+  .quiz-fb.fail{background:rgba(239,68,68,.08);color:#fca5a5;border:1px solid rgba(239,68,68,.25);}
+  .quiz-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:14px;}
+  .score-box{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;margin-bottom:24px;}
+  .score-num{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:var(--blue);}
+  .score-label{font-size:12px;color:var(--text3);margin-top:4px;}
+  #score-display{display:none;}
+
+  .bar-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+  .bar-label{width:260px;font-size:13px;color:var(--text2);flex-shrink:0;}
+  .bar-track{flex:1;background:var(--bg3);border-radius:100px;height:9px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:100px;}
+  .bar-count{width:28px;text-align:right;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;flex-shrink:0;}
+
+  .yeni-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:100px;padding:2px 9px;font-size:10px;font-weight:700;color:#86efac;margin-left:8px;vertical-align:middle;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-badge">🔐 2021-22 · 2023-24 · 2024-25 Bahar Ara Sınavları</div>
+  <h1>Ağ Yönetimi &<br>Bilgi Güvenliği</h1>
+  <p>Ünite 1–4 kapsam · Kitap + Çıkmış sorular analizi · Tüm kavramlar eksiksiz</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Ünite</div></div>
+    <div class="stat"><div class="stat-num">60+</div><div class="stat-label">Çıkmış Soru</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Sınav Yılı</div></div>
+    <div class="stat"><div class="stat-num">30</div><div class="stat-label">Quiz Sorusu</div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="show('u1',this)">🌐 Ünite 1: Bilgisayar Ağları</button>
+    <button class="nav-btn" onclick="show('u2',this)">⚙️ Ünite 2: Ağ Yönetimi & SNMP</button>
+    <button class="nav-btn" onclick="show('u3',this)">🔒 Ünite 3: Simetrik Şifreleme</button>
+    <button class="nav-btn" onclick="show('u4',this)">🔑 Ünite 4: Açık Anahtar & İmza</button>
+    <button class="nav-btn" onclick="show('quiz',this)">🎯 Mini Quiz</button>
+    <button class="nav-btn" onclick="show('analiz',this)">📊 Sınav Analizi</button>
+  </div>
+</nav>
+
+<!-- ============ ÜNİTE 1 ============ -->
+<div id="u1" class="section active">
+<div class="container">
+  <div class="section-header">
+    <div class="section-icon" style="background:linear-gradient(135deg,#4f8ef7,#06b6d4);">🌐</div>
+    <div><h2>Ünite 1: Bilgisayar Ağlarına Genel Bakış</h2><span>Ağ tarihi · Ağ çeşitleri · Topolojiler · Protokoller · Cihazlar · Kablolar · OSI Katmanları</span></div>
+  </div>
+
+  <h3>Ağ Tarihi & ARPANET</h3>
+  <div class="card">
+    <table>
+      <tr><th>Kavram</th><th>Açıklama</th></tr>
+      <tr><td><strong>ARPANET</strong></td><td>Veri iletişiminde <strong>paket anahtarlama</strong> yönteminin ilk örneği. Bugünkü İnternet'in atası. 1969'da 4 üniversiteyi birbirine bağladı.</td></tr>
+      <tr><td><strong>DARPA</strong></td><td>ARPANET'in yeni adı (Defence Advanced Research Projects Agency). Soğuk Savaş döneminde askeri bilgi paylaşımı için kuruldu.</td></tr>
+      <tr><td><strong>TCP/IP</strong></td><td>1970'li yıllarda geliştirildi. Protokol = bilgisayar ağlarında veri transferi için düzeni sağlayan <strong>kurallar dizesi</strong>.</td></tr>
+      <tr><td><strong>FTP</strong></td><td>1970'lerde Telnet ile uzak bağlantı ve <strong>FTP (File Transfer Protocol)</strong> ile dosya transferi ağ ortamında gerçekleşebilir hale geldi.</td></tr>
+      <tr><td><strong>WWW</strong></td><td>1989 yılında ortaya atıldı. Hiper metinlere dayanan protokol. Her hiper metne <strong>web sayfası</strong> denir.</td></tr>
+      <tr><td><strong>Ethernet</strong></td><td>1972'de XEROX firması tarafından geliştirildi. Günümüzde en yaygın kullanılan bağlantı ortamıdır. LAN'larda kullanılır.</td></tr>
+    </table>
+  </div>
+  <div class="hl">⚠️ Sınav sorusu: "Paket anahtarlama yönteminin ilk örneği?" → <strong>ARPANET</strong></div>
+
+  <h3>Büyüklüklerine Göre Ağ Çeşitleri</h3>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#4f8ef7"></div>LAN</div>
+      <p><strong>Local Area Network – Yerel Alan Ağı</strong></p>
+      <p><strong>Oluşturulan ilk ağ çeşididir.</strong> Ev, okul, laboratuvar, iş binaları gibi sınırlı alanları kapsar. En hızlı ve verimli ağdır.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#8b5cf6"></div>PAN</div>
+      <p><strong>Personal Area Network – Kişisel Alan Ağı</strong></p>
+      <p>Akıllı telefon, tablet, kişisel dijital asistan gibi <strong>kişiye yakın cihazların</strong> oluşturduğu ağdır. Bluetooth, IrDA, NFC kullanır.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#14b8a6"></div>MAN</div>
+      <p><strong>Metropolitan Area Network – Şehirsel Alan Ağı</strong></p>
+      <p>Bir şehir ya da yerleşkede oluşturulan ağ. LAN'ların fiber optik veya WiMax ile birleştirilmesiyle oluşur.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#f59e0b"></div>WAN</div>
+      <p><strong>Wide Area Network – Geniş Alan Ağı</strong></p>
+      <p>LAN veya MAN'ların birleşmesiyle oluşan en geniş alan ağı. <strong>Dünyadaki en geniş WAN = İnternet'tir.</strong></p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#ec4899"></div>VPN</div>
+      <p><strong>Virtual Private Network – Sanal Özel Ağ</strong></p>
+      <p>Uzaktaki cihazın fiziksel olarak uzaktaki bir ağa <strong>dahilmiş gibi davranmasını</strong> sağlayan özel ağ türü.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#22c55e"></div>CAN / SAN <span class="yeni-badge">📘 Kitap</span></div>
+      <p><strong>CAN:</strong> Campus Area Network – Kampüs Alan Ağı (üniversite yerleşkeleri)</p>
+      <p><strong>SAN:</strong> Storage Area Network – Depolama Alan Ağı (depolama sunucularına bağlantı)</p>
+    </div>
+  </div>
+  <div class="hl">⚠️ "İlk oluşturulan ağ çeşidi?" → <strong>LAN</strong> | "Akıllı telefon, tablet, PDA?" → <strong>PAN</strong> | "En geniş alan ağı?" → <strong>İnternet (WAN)</strong></div>
+
+  <h3>Topolojilerine Göre Ağlar</h3>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#ef4444"></div>Ortak Yol (BUS) Topolojisi</div>
+      <ul>
+        <li>Tek bir kablo üzerinde, <strong>BNC adaptöre sahip Ethernet kartlarının</strong> birbirine bağlanmasıyla oluşur</li>
+        <li>Merkez birimine ihtiyaç duymaz, kurulumu kolay</li>
+        <li>Tüm bilgisayarlar aynı kabloyu ortak kullandığından hız düşüktür</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#f97316"></div>Halka (Ring) Topolojisi</div>
+      <ul>
+        <li>BUS topolojisinin iki ucunun birleştirilmesiyle oluşur</li>
+        <li>İlk olarak <strong>IBM</strong> tarafından geliştirildi</li>
+        <li>Her bilgisayar kendine ait zamanda veri iletir</li>
+        <li>Hatalı bir iş istasyonu tüm sistemi bozabilir</li>
+        <li>Geniş ağlarda <strong>Andıçlı Halka (Token Ring)</strong> kullanılır</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#8b5cf6"></div>Örgü (Mesh) Topolojisi</div>
+      <ul>
+        <li>Her düğüm diğerinin yerini alabilir</li>
+        <li><strong>Hatalı düğümler veri akışında soruna yol açmaz</strong></li>
+        <li>Tüm cihazlar birbirine bağlıdır, alternatif yollar mevcuttur</li>
+        <li>En güvenilir topoloji türüdür</li>
+        <li>MANET (Mobil Özel Amaçlı Ağlar) kısmen bağlantılı örgü kullanır</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#14b8a6"></div>Yıldız (Star) Topolojisi</div>
+      <ul>
+        <li>Tüm bilgisayarlar merkezi bir cihaza (hub/switch) bağlıdır</li>
+        <li>Bir bilgisayarın arızalanması diğerlerini etkilemez</li>
+        <li><strong>Günümüzde en yaygın topoloji türüdür</strong></li>
+        <li>Merkezi cihaz arızalanırsa tüm ağ çöker</li>
+        <li>Anahtar Cihaz (Switch) veya Erişim Noktası (Access Point) kullanılır</li>
+      </ul>
+    </div>
+  </div>
+  <div class="hl">⚠️ "Tüm cihazların birbirine bağlı, alternatif yollar?" → <strong>Örgü (Mesh)</strong> | "BNC adaptör, tek kablo?" → <strong>Ortak Yol (BUS)</strong></div>
+  <div class="hl">⚠️ "Her düğümün diğerinin yerini alabildiği, hatalı düğümlerin soruna neden olmadığı?" → <strong>Örgü (Mesh)</strong></div>
+
+  <h3>Bağlantı Ortamlarına Göre Ağlar</h3>
+  <div class="card">
+    <table>
+      <tr><th>Bağlantı Türü</th><th>Açıklama</th></tr>
+      <tr><td><strong>ATM</strong></td><td>Asynchronous Transfer Mode – Eşzamansız Aktarım Modu. Sabit büyüklükte hücreler (cells) kullanır.</td></tr>
+      <tr><td><strong>FDDI</strong></td><td><strong>Fiber optik kablolar</strong> ile kullanılmak üzere geliştirilmiş <strong>yüksek hızlı</strong> bir bilgisayar ağı çeşidi.</td></tr>
+      <tr><td><strong>Token Ring (Andıçlı Halka)</strong></td><td>Andıcı elinde bulunduran bilgisayar veri gönderir. Geniş LAN ağlarında kullanılır.</td></tr>
+      <tr><td><strong>Ethernet</strong></td><td>Günümüzde en yaygın kullanılan bağlantı ortamı. Genellikle yerel alan ağlarında kullanılır. XEROX tarafından geliştirildi.</td></tr>
+    </table>
+  </div>
+  <div class="hl">⚠️ "Fiber optik kablolar ile kullanılmak üzere geliştirilmiş yüksek hızlı ağ çeşidi?" → <strong>FDDI</strong></div>
+
+  <h3>Ağ Katmanları — OSI & TCP/IP Modeli</h3>
+  <div class="card">
+    <div class="card-title"><div class="dot" style="background:#4f8ef7"></div>OSI Modeli (7 Katman) vs TCP/IP Modeli (4 Katman)</div>
+    <div class="grid-2" style="margin-top:12px;">
+      <div>
+        <div style="color:#93c5fd;font-weight:700;font-size:13px;margin-bottom:8px;">OSI Modeli (7 katman)</div>
+        <table>
+          <tr><th>#</th><th>Katman</th></tr>
+          <tr><td>7</td><td>Uygulama Katmanı</td></tr>
+          <tr><td>6</td><td>Sunum Katmanı</td></tr>
+          <tr><td>5</td><td>Oturum Katmanı</td></tr>
+          <tr><td>4</td><td>Taşıma Katmanı</td></tr>
+          <tr><td>3</td><td>Ağ Katmanı</td></tr>
+          <tr><td>2</td><td>Veri Bağlantı Katmanı</td></tr>
+          <tr><td>1</td><td>Fiziksel Katman</td></tr>
+        </table>
+      </div>
+      <div>
+        <div style="color:#86efac;font-weight:700;font-size:13px;margin-bottom:8px;">TCP/IP Modeli (4 katman)</div>
+        <table>
+          <tr><th>Katman</th><th>OSI Karşılığı</th></tr>
+          <tr><td>Uygulama</td><td>Uygulama + Sunum + Oturum</td></tr>
+          <tr><td>Taşıma</td><td>Taşıma Katmanı</td></tr>
+          <tr><td>Ağ</td><td>Ağ Katmanı</td></tr>
+          <tr><td>Ağ Erişim</td><td>Veri Bağlantı + Fiziksel</td></tr>
+        </table>
+        <div class="info-box" style="margin-top:10px;">TCP/IP, OSI'yi temel alan günümüzde kullanılan modeldir. OSI <strong>referans model</strong>, TCP/IP <strong>güncel standart</strong>tır.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Protokoller & Katmanlar</h3>
+  <div class="card">
+    <table>
+      <tr><th>Protokol</th><th>Katman</th><th>Açıklama</th></tr>
+      <tr><td><strong>HTTP / HTTPS</strong></td><td><span class="badge badge-green">Uygulama</span></td><td>Web tarayıcılar tarafından hiper metin transferi için kullanılır. HTTPS güvenli versiyonu.</td></tr>
+      <tr><td><strong>FTP</strong></td><td><span class="badge badge-green">Uygulama</span></td><td>File Transfer Protocol – Ağ üzerinde dosya transferi. <strong>Güvenli ve eksiksiz</strong> iletim sağlar. Taşıma katmanında <strong>TCP</strong> kullanır.</td></tr>
+      <tr><td><strong>SMTP / POP3</strong></td><td><span class="badge badge-green">Uygulama</span></td><td>E-posta gönderme (SMTP) / alma (POP3) protokolleri.</td></tr>
+      <tr><td><strong>DNS</strong></td><td><span class="badge badge-green">Uygulama</span></td><td>Alan adlarını IP adreslerine çevirir.</td></tr>
+      <tr><td><strong>SIP</strong></td><td><span class="badge badge-green">Uygulama</span></td><td>Session Initiation Protocol – VoIP oturumu kurmak için.</td></tr>
+      <tr><td><strong>TCP</strong></td><td><span class="badge badge-blue">Taşıma</span></td><td>Verilerin alıcıya <strong>eksiksiz, sıralı ve güvenilir</strong> şekilde ulaşmasını garanti eden en gelişmiş taşıma protokolü. 20-60 Bayt başlık.</td></tr>
+      <tr><td><strong>UDP</strong></td><td><span class="badge badge-blue">Taşıma</span></td><td>En basit taşıma protokolü. Hızlı ama güvensiz. 8 Bayt başlık. Ses/görüntü aktarımında kullanılır. Bağlantı gerektirmez.</td></tr>
+      <tr><td><strong>IP (IPv4/IPv6)</strong></td><td><span class="badge badge-amber">Ağ</span></td><td>Paketlerin adreslenmesi ve yönlendirilmesi. IPv4 = 32 bit, IPv6 = 128 bit.</td></tr>
+    </table>
+    <div class="info-box">TCP ve UDP protokollerinin <strong>en sık kullanıldığı katman = Taşıma (Transport) Katmanı</strong></div>
+    <div class="info-box"><strong>MAC Adresi</strong> = 48 bit. Ağ arayüz kartında bulunan sabit adres. Aynı ağdaki cihazları birbirinden ayırmak için kullanılır.</div>
+  </div>
+  <div class="hl">⚠️ "Dosya transferi için kullanılan, güvenli ve eksiksiz iletimi sağlayan protokol?" → <strong>FTP</strong></div>
+  <div class="hl">⚠️ "TCP ve UDP'nin en sık kullanıldığı katman?" → <strong>Taşıma Katmanı</strong></div>
+  <div class="hl">⚠️ "Web tarayıcılar tarafından hiper metin transferi için kullanılan protokol?" → <strong>HTTP</strong></div>
+  <div class="hl">⚠️ "FTP tarafından kullanılan taşıma katmanı protokolü?" → <strong>TCP</strong></div>
+
+  <h3>UDP Hakkında Doğru/Yanlış <span class="yeni-badge">📘 Kitap</span></h3>
+  <div class="card">
+    <table>
+      <tr><th>İfade</th><th>Durum</th></tr>
+      <tr><td>Bağlantı gerektirmez</td><td><span class="badge badge-green">✅ DOĞRU</span></td></tr>
+      <tr><td>Taşma (overflow) kontrolü kullanmaz</td><td><span class="badge badge-green">✅ DOĞRU</span></td></tr>
+      <tr><td>Tek alıcıya gönderimi destekler</td><td><span class="badge badge-green">✅ DOĞRU</span></td></tr>
+      <tr><td>Çoklu alıcılara gönderimi destekler</td><td><span class="badge badge-green">✅ DOĞRU</span></td></tr>
+      <tr><td><strong>Akış kontrolü kullanır</strong></td><td><span class="badge badge-red">❌ YANLIŞ — UDP akış kontrolü kullanmaz, TCP kullanır!</span></td></tr>
+    </table>
+  </div>
+
+  <h3>Ağ Bileşenleri & Cihazlar</h3>
+  <div class="card">
+    <table>
+      <tr><th>Cihaz</th><th>Katman</th><th>Görevi</th></tr>
+      <tr><td><strong>Tekrarlayıcı (Repeater)</strong></td><td>1. Katman</td><td>Bir arayüzünden aldığı <strong>zayıflayan voltajı (sinyali) güçlendirerek</strong> diğer çıkışından gönderir. Fiziksel <strong>kablo mesafesini uzatır</strong>.</td></tr>
+      <tr><td><strong>Göbek Cihaz (Hub)</strong></td><td>1. Katman</td><td>Tüm portlara veri yayınlar. <strong>Çok kapılı tekrarlayıcı</strong> olarak da adlandırılır. Seçici gönderim yapamaz.</td></tr>
+      <tr><td><strong>Köprü (Bridge)</strong></td><td>2. Katman</td><td>Ağı iki bölüme ayırır. <strong>MAC adresine göre seçimli</strong> veri iletimi sağlar. İki arayüze sahiptir.</td></tr>
+      <tr><td><strong>Anahtar Cihaz (Switch)</strong></td><td>2. Katman</td><td>Köprünün <strong>çok arayüzlü</strong> şeklidir. MAC adresine bakarak paketi doğru porta gönderir. Yıldız topolojisi kullanır.</td></tr>
+      <tr><td><strong>Yönlendirici (Router)</strong></td><td>3. Katman</td><td><strong>IP adresine bakarak</strong> paketin hangi arayüzden gönderileceğine karar verir. Yönlendirme tablolarını kullanır.</td></tr>
+      <tr><td><strong>Ateş Duvarı (Firewall)</strong></td><td>—</td><td>Ağa izinsiz girişleri engeller. Güvenlik politikalarını uygular.</td></tr>
+    </table>
+    <div class="hl-red">⚠️ <strong>Kayıt cihazı (Log)</strong> ağ bileşeni elemanlarından <strong>biri değildir!</strong> (Her yıl çıkmış sınav sorusu)</div>
+  </div>
+  <div class="hl">⚠️ "IP adresine bakarak paketin hangi arayüzden gönderileceğine karar veren?" → <strong>Yönlendirici (Router)</strong></div>
+  <div class="hl">⚠️ "Kablo mesafesini uzatmak için, zayıflayan sinyali güçlendiren?" → <strong>Tekrarlayıcı (Repeater)</strong></div>
+  <div class="hl">⚠️ "Çok kapılı tekrarlayıcı?" → <strong>Göbek Cihaz (Hub)</strong></div>
+  <div class="hl">⚠️ "MAC adreslerini tabloda saklayarak seçimli gönderim yapan iki veya daha çok kapılı cihaz?" → <strong>Anahtar Cihaz (Switch)</strong></div>
+
+  <h3>Kablo Türleri</h3>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#4f8ef7"></div>UTP Kablo</div>
+      <p>Bant genişliğine göre <strong>Cat1, Cat2, Cat3…Cat6a</strong> çeşitleri vardır. LAN'larda en sık kullanılan kablo. RJ45 konnektör kullanır.</p>
+      <p><strong>Hız:</strong> 1–10 Gbps aralığında değişir.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#14b8a6"></div>Fiber Optik Kablo</div>
+      <p>En hızlı ve uzak mesafe veri iletimine imkân sağlar. Işık dalgaları kullanır (LED veya lazer). Alıcı fotodiyottur. Maliyeti yüksek.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#f59e0b"></div>Eşmerkezli Kablo</div>
+      <p>BNC adaptör ile birbirine bağlantı yapılan ağlarda kullanılır. BUS topolojisinde kullanılan eski kablo türüdür.</p>
+    </div>
+  </div>
+  <div class="hl">⚠️ "Cat1, Cat2, Cat3 çeşitleri bulunan, LAN'larda kullanılan kablo?" → <strong>UTP Kablo</strong></div>
+  <div class="hl">⚠️ "UTP kablo üzerindeki hız aralığı?" → <strong>1–10 Gbps</strong></div>
+  <div class="hl">⚠️ "Fiber optik kablolarla kullanılmak üzere geliştirilmiş yüksek hızlı ağ?" → <strong>FDDI</strong></div>
+
+</div>
+</div>
+
+<!-- ============ ÜNİTE 2 ============ -->
+<div id="u2" class="section">
+<div class="container">
+  <div class="section-header">
+    <div class="section-icon" style="background:linear-gradient(135deg,#8b5cf6,#ec4899);">⚙️</div>
+    <div><h2>Ünite 2: Ağ Yönetimi ve SNMP</h2><span>Ağ bileşenleri · Yönetim çeşitleri · Alt yapı · SNMP protokolü</span></div>
+  </div>
+
+  <h3>Ağ Yönetim Çeşitleri</h3>
+  <div class="grid-2">
+    <div class="card" style="border-color:rgba(239,68,68,.3);">
+      <div class="card-title"><div class="dot" style="background:#ef4444"></div>Hata Yönetimi</div>
+      <p>Ağın <strong>arızalarını kaydetmek, raporlamak ve gerekli aksiyonları almak</strong> için geliştirilmiştir.</p>
+      <div class="info-box"><strong>Fark:</strong> Hata yönetimi <em>anlık</em> olarak devreye girer. Performans yönetimi ise <em>uzun vadeli</em> verilerle çalışır.</div>
+    </div>
+    <div class="card" style="border-color:rgba(245,158,11,.3);">
+      <div class="card-title"><div class="dot" style="background:#f59e0b"></div>Performans Yönetimi</div>
+      <p>Ağın verimliliğini, çıkış gücünü, <strong>uzun vadeli verilerle</strong> ölçer, analiz eder, raporlar ve kontrol eder. SNMP bu alanda önemli protokoldür.</p>
+    </div>
+    <div class="card" style="border-color:rgba(79,142,247,.3);">
+      <div class="card-title"><div class="dot" style="background:#4f8ef7"></div>Yapılandırma Yönetimi</div>
+      <p>Ağa bağlı cihazların <strong>durumları ve yapılandırmaları</strong> konusunda bilgi sağlar. Yönlendiricilerin yapılandırmalarını yönetir.</p>
+    </div>
+    <div class="card" style="border-color:rgba(6,182,212,.3);">
+      <div class="card-title"><div class="dot" style="background:#06b6d4"></div>Hesaplama Yönetimi</div>
+      <p>Ağ kaynaklarının cihazlar tarafından <strong>nasıl kullanıldığıyla</strong> ilgilidir. Örn: <strong>ADSL kotasının belirlenmesi</strong>, kota dolunca farklı ücretlendirme.</p>
+    </div>
+    <div class="card" style="border-color:rgba(34,197,94,.3);">
+      <div class="card-title"><div class="dot" style="background:#22c55e"></div>Güvenlik Yönetimi</div>
+      <p>Ağa bağlantı yapan kaynakların <strong>izin verilen yazılımlarla bağlantı sağlamasını</strong> denetler. Yetkisiz girişleri engeller.</p>
+    </div>
+  </div>
+  <div class="hl-red">⚠️ "Ağ yönetim çeşidi değil olan?" → <strong>IP Adresi Yönetimi</strong> ❌ (kitaptaki örnek sorudan)</div>
+  <div class="hl">⚠️ "Ağın arızalarını kaydetmek, raporlamak?" → <strong>Hata Yönetimi</strong></div>
+  <div class="hl">⚠️ "ADSL kotasının belirlenmesi hangi yönetim çeşididir?" → <strong>Hesaplama Yönetimi</strong></div>
+  <div class="hl">⚠️ "Hata yönetimi ile performans yönetimi arasındaki temel fark?" → Hata = <strong>anlık</strong>, Performans = <strong>uzun vadeli</strong></div>
+
+  <h3>Ağ Yönetim Alt Yapısı — 3 Temel Bileşen <span class="yeni-badge">🔥 Kritik</span></h3>
+  <div class="card">
+    <div class="info-box">Ağ yönetim alt yapısının <strong>üç bileşeni: Yönetici Öge, Yönetilen Cihaz ve Yönetim Protokolleri</strong></div>
+    <div class="grid-3" style="margin-top:14px;">
+      <div style="background:var(--bg3);border-radius:10px;padding:14px;">
+        <div style="color:#c4b5fd;font-weight:700;font-size:13px;margin-bottom:6px;">👤 Yönetici Öge</div>
+        <p style="font-size:13px;"><strong>Ağ merkezinde bulunan</strong>, ağ hakkında gerekli bilgileri sağlayan yazılımdır. Ağ yöneticisi ile ağın haberleşmesini sağlar.</p>
+      </div>
+      <div style="background:var(--bg3);border-radius:10px;padding:14px;">
+        <div style="color:#93c5fd;font-weight:700;font-size:13px;margin-bottom:6px;">🖥️ Yönetilen Cihaz</div>
+        <p style="font-size:13px;">Ağa bağlı herhangi bir <strong>donanım ve üzerindeki uygulama</strong>. Bilgisayar, switch, router, modem olabilir.</p>
+      </div>
+      <div style="background:var(--bg3);border-radius:10px;padding:14px;">
+        <div style="color:#67e8f9;font-weight:700;font-size:13px;margin-bottom:6px;">🔗 Yönetim Protokolleri</div>
+        <p style="font-size:13px;"><strong>Yönetici öge ile yönetilen cihaz arasında köprü görevi görür.</strong> Verinin biçimini ve kurallarını belirler.</p>
+      </div>
+    </div>
+  </div>
+  <div class="hl">⚠️ "Yönetici öge ile yönetilen cihaz arasında köprü görevi gören?" → <strong>Yönetim Protokolleri</strong></div>
+  <div class="hl">⚠️ "Ağ merkezinde bulunan, ağ hakkında bilgi sağlayan yazılım?" → <strong>Yönetici Öge</strong></div>
+
+  <h3>SNMP Protokolü (Basit Ağ Yönetim Protokolü)</h3>
+  <div class="card">
+    <div class="card-title"><div class="dot" style="background:#8b5cf6"></div>SNMP'nin 3 Bileşeni (Sınav Sorusu!)</div>
+    <div class="grid-3" style="margin-top:14px;">
+      <div style="background:var(--bg3);border-radius:10px;padding:14px;">
+        <div style="color:#c4b5fd;font-weight:700;font-size:13px;margin-bottom:6px;">🔧 Araç Uygulama</div>
+        <p style="font-size:13px;">SNMP hizmetini <strong>cihaz üzerinde çalıştırarak</strong> gerekli bilgilerin alınmasını sağlar.</p>
+      </div>
+      <div style="background:var(--bg3);border-radius:10px;padding:14px;">
+        <div style="color:#93c5fd;font-weight:700;font-size:13px;margin-bottom:6px;">👤 Yönetici Uygulama</div>
+        <p style="font-size:13px;">Araç uygulamadan bilgileri alarak ağ yöneticisinin izlemesini sağlar. Değişiklik isteklerini araç uygulamalara iletir.</p>
+      </div>
+      <div style="background:var(--bg3);border-radius:10px;padding:14px;">
+        <div style="color:#67e8f9;font-weight:700;font-size:13px;margin-bottom:6px;">🖥️ Ağ Yönetim Sistemi</div>
+        <p style="font-size:13px;">Yönetici birimde çalışan ve <strong>tüm cihazların izlenmesi ve yönetimini</strong> sağlayan sistem.</p>
+      </div>
+    </div>
+    <div class="info-box" style="margin-top:14px;">SNMP bileşenleri: <strong>Araç Uygulama + Yönetici Uygulama + Ağ Yönetim Sistemi</strong></div>
+    <div class="hl-red" style="margin-top:10px;"><strong>SNMP bileşeni DEĞİL:</strong> Yönlendirme Protokolü ❌</div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title"><div class="dot" style="background:#14b8a6"></div>Yönetim Bilgi Üssü (MIB) & SNMP Ağaç Yapısı</div>
+    <p>Tüm bilgiler <strong>Yönetim Bilgi Üssünde (MIB – Management Information Base)</strong> depolanır. Hiyerarşik ağaç yapısı kullanılır.</p>
+    <div class="grid-2" style="margin-top:10px;">
+      <div>
+        <div style="color:#86efac;font-weight:700;font-size:13px;margin-bottom:8px;">✅ Ağaç yapısında YER ALAN bilgiler:</div>
+        <ul>
+          <li>Cihazların <strong>ısı değerleri</strong></li>
+          <li><strong>Çalışma süreleri</strong></li>
+          <li><strong>Yönlendirme tabloları</strong></li>
+          <li><strong>İnternet bağlantı hızları</strong></li>
+        </ul>
+      </div>
+      <div>
+        <div style="color:#fca5a5;font-weight:700;font-size:13px;margin-bottom:8px;">❌ Ağaç yapısında YER ALMAYAN:</div>
+        <div class="hl-red">Cihazların <strong>kasa renkleri</strong> — SNMP ağaç yapısında yer almaz! (Her yıl çıkıyor!)</div>
+      </div>
+    </div>
+  </div>
+  <div class="hl">⚠️ "SNMP'nin temel bileşenleri?" → <strong>Araç Uygulama + Yönetici Uygulama + Ağ Yönetim Sistemi</strong></div>
+  <div class="hl">⚠️ "SNMP ağaç yapısında yer almayan?" → <strong>Cihazların kasa renkleri</strong></div>
+
+  <h3>Bilgisayar Çeşitleri</h3>
+  <div class="card">
+    <table>
+      <tr><th>Tür</th><th>Açıklama</th></tr>
+      <tr><td><strong>Bilgisayar</strong></td><td>Ham veriyi alarak üzerinde işlem yapan, bilgi olarak çıkış veren, gerektiğinde bilgiyi depolayan elektronik cihaz.</td></tr>
+      <tr><td><strong>Süper Bilgisayar</strong></td><td>En güçlü ve pahalı sınıf. Yoğun hesaplama ve çok kişiye eş zamanlı hizmet için kullanılır.</td></tr>
+      <tr><td><strong>Sunucu Bilgisayar</strong></td><td>Hiç kapanmadan sürekli çalışma esasına göre hizmet verir. Web, e-posta, işletim sistemi desteği için kullanılır.</td></tr>
+      <tr><td><strong>Kişisel Bilgisayar</strong></td><td>Evlerde, okullarda kullanılan. ADSL modem ile ağa en sık dahil olan çeşit.</td></tr>
+    </table>
+  </div>
+  <div class="hl">⚠️ "Ham veriyi alarak işlem yapan, bilgi olarak çıkış veren elektronik cihaz?" → <strong>Bilgisayar</strong></div>
+
+</div>
+</div>
+
+<!-- ============ ÜNİTE 3 ============ -->
+<div id="u3" class="section">
+<div class="container">
+  <div class="section-header">
+    <div class="section-icon" style="background:linear-gradient(135deg,#f59e0b,#f97316);">🔒</div>
+    <div><h2>Ünite 3: Simetrik Şifreleme ve Mesaj Gizliliği</h2><span>Kriptografi · Klasik & Modern şifreleme · Dizi & Blok şifreleme · Blok modları</span></div>
+  </div>
+
+  <h3>Kriptoloji Temel Kavramları</h3>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#4f8ef7"></div>Kriptografi</div>
+      <p>Güvenli veri paylaşımı için gerekli <strong>algoritmaları ve protokolleri tasarlayan ve geliştiren</strong> bilim dalıdır.</p>
+      <div class="info-box">Kriptoloji = Kriptografi + Kriptoanaliz</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#ef4444"></div>Kriptoanaliz</div>
+      <p>Kriptografik algoritmaların <strong>açıklarını tespit ederek kırmaya çalışan</strong> bilim dalı. İyi niyetli araştırmacılar açıkları düzeltmek için çalışır.</p>
+    </div>
+  </div>
+  <div class="hl">⚠️ "Güvenli iletişim için algoritma ve protokoller tasarlayan bilim dalı?" → <strong>Kriptografi</strong> (Kriptoanaliz değil!)</div>
+
+  <h3>Şifreleme Algoritması Türleri</h3>
+  <div class="card">
+    <table>
+      <tr><th>Tür</th><th>Anahtar</th><th>Açıklama</th></tr>
+      <tr><td><strong>Simetrik Şifreleme</strong></td><td>Tek gizli anahtar</td><td>Şifreleme ve çözme için aynı anahtar kullanılır. "Tek anahtar" veya "gizli anahtar şifreleme" de denir.</td></tr>
+      <tr><td><strong>Açık Anahtar Şifreleme</strong></td><td>İki ilişkili anahtar (açık + gizli)</td><td>Asimetrik şifreleme de denir. 1976'da ortaya çıktı.</td></tr>
+      <tr><td><strong>Özet Fonksiyonları</strong></td><td>Anahtar yok</td><td>Veri bütünlüğünün kontrolü için kullanılır.</td></tr>
+    </table>
+  </div>
+
+  <h3>Simetrik Şifreleme Temel Ögeleri</h3>
+  <div class="card">
+    <table>
+      <tr><th>Öge</th><th>Simge</th><th>Açıklama</th></tr>
+      <tr><td><strong>Açık metin (Düz metin)</strong></td><td>P</td><td>Şifrelenmemiş orijinal mesaj</td></tr>
+      <tr><td><strong>Şifrelenmiş metin</strong></td><td>C</td><td>Şifreleme işlemi sonucu elde edilen metin</td></tr>
+      <tr><td><strong>Gizli anahtar</strong></td><td>K</td><td>Şifreleme ve çözme için kullanılan ortak anahtar</td></tr>
+      <tr><td><strong>Şifreleme fonksiyonu</strong></td><td>E</td><td>Açık metin + anahtar → şifreli metin</td></tr>
+      <tr><td><strong>Çözme fonksiyonu</strong></td><td>D</td><td>Şifreli metin + anahtar → açık metin</td></tr>
+    </table>
+    <div class="hl-red"><strong>Simetrik şifrelemenin temel ögesi DEĞİL:</strong> Veri bütünlüğü ❌ | Doğrulama fonksiyonu ❌ (Her sınav yılında çıkıyor!)</div>
+    <div class="info-box"><strong>Şifreleme fonksiyonları bire-bir ve örten olmalıdır</strong> — Aksi halde alıcı hangi açık karaktere karşılık geldiğini bilemez.</div>
+    <div class="info-box"><strong>Simetrik şifrelemenin en önemli avantajı:</strong> Hızlı şifreleme algoritmaları olmaları (bit tabanlı operasyonlar)</div>
+  </div>
+
+  <h3>Dizi Şifreleme (Stream Cipher) <span class="yeni-badge">📘 Kitap</span></h3>
+  <div class="card">
+    <div class="card-title"><div class="dot" style="background:#f97316"></div>Tek Zamanlı Blok (One-Time Pad) — XOR ile Şifreleme</div>
+    <p>Dizi şifreleme algoritmaları <strong>bit tabanlı</strong> şifreleme ve çözme yapar. Bir bitlik açık metni bir bitlik şifreli metne dönüştürür.</p>
+    <div class="code-block">
+Açık metin:    0 1 0 0 1 1 0 1
+Anahtar dizisi: 1 0 1 1 0 1 0 0
+XOR sonucu:    1 1 1 1 1 0 0 1   ← Şifrelenmiş metin
+
+<span class="cm">// XOR kuralı: 0⊕0=0, 1⊕1=0, 0⊕1=1, 1⊕0=1</span>
+<span class="cm">// Aynı ise 0, farklı ise 1</span>
+    </div>
+    <div class="hl">⚠️ Sınavda bu hesaplama birebir çıkmıştır! Cevap: <strong>1 1 1 1 1 0 0 1</strong></div>
+    <div class="info-box"><strong>Tek zamanlı blok zorluğu:</strong> Anahtarın mesaj ile aynı uzunlukta olması ve güvenli iletilmesi gerekir.</div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title"><div class="dot" style="background:#8b5cf6"></div>RC4 <span class="yeni-badge">📘 Kitap</span></div>
+    <p>Tek zamanlı blok yönteminin pratik uygulamasıdır. <strong>Kayan anahtar dizisi</strong> kullanır. Gizli anahtardan türetilen anahtar dizisi ile XOR yapılır.</p>
+    <p>Güvenlik açığı: RC4A ve RC4+ gibi alternatifler önerilmiştir.</p>
+  </div>
+
+  <h3>Klasik Şifreleme Algoritmaları (Blok Şifreleme)</h3>
+  <div class="grid-2">
+    <div class="card" style="border-color:rgba(239,68,68,.3);">
+      <div class="card-title"><div class="dot" style="background:#ef4444"></div>Sezar Şifreleme Algoritması 🏆</div>
+      <p><strong>Bilinen en eski ve en basit şifreleme yöntemidir.</strong></p>
+      <p>Alfabede her bir harfin <strong>belirli sayıda karakter ötelenmesi</strong> ile şifreleme tablosu elde edilir.</p>
+      <div class="code-block">
+Şifreleme: y = x + 3 mod 26
+Çözme:     x = y – 3 mod 26
+<span class="cm">// Örnek: 'a'(0) → 'D'(3), 'b'(1) → 'E'(4)</span>
+<span class="cm">// "hello" → "KHOOR"</span>
+<span class="cm">// Gizli anahtar = öteleme miktarı</span>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(245,158,11,.3);">
+      <div class="card-title"><div class="dot" style="background:#f59e0b"></div>Affine Şifreleme</div>
+      <p><strong>Sezar yönteminin geliştirilmesiyle elde edilmiştir.</strong></p>
+      <div class="code-block">
+Şifreleme: y = a * x + b mod 26
+Çözme:     x = a⁻¹(y – b) mod 26
+      </div>
+      <ul>
+        <li>İngilizce alfabe (26 harf): <strong>12 × 26 = 312</strong> farklı anahtar</li>
+        <li>Türk alfabesi (29 harf, <strong>asal</strong>): <strong>28 × 29 = 812</strong> farklı anahtar</li>
+        <li>'a' değeri sadece 26 ile aralarında asal olan sayılardan seçilir</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(139,92,246,.3);">
+      <div class="card-title"><div class="dot" style="background:#8b5cf6"></div>Monoalfabetik Şifreleme</div>
+      <p>Alfabedeki her karakter başka bir karakterle değiştirilir. <strong>26! ≈ 4 × 10²⁶</strong> farklı tablo mümkündür.</p>
+      <p>Zafiyeti: <strong>Sıklık analizi saldırıları</strong> (en sık kullanılan harf 'e')</p>
+    </div>
+    <div class="card" style="border-color:rgba(20,184,166,.3);">
+      <div class="card-title"><div class="dot" style="background:#14b8a6"></div>Vigenere Şifreleme</div>
+      <p>Sıklık analizine karşı geliştirildi. <strong>Parola tabanlı</strong> şifreleme. Açık metindeki bir karakter <strong>birçok farklı karakterle</strong> şifrelenebilir.</p>
+      <p>Parola açık metinden kısa ise parola tekrar edilir.</p>
+    </div>
+  </div>
+  <div class="hl">⚠️ "En eski ve en basit şifreleme?" → <strong>Sezar</strong> | "Harflerin belirli sayıda ötelenmesiyle?" → <strong>Sezar</strong></div>
+  <div class="hl">⚠️ "Sezar yönteminin geliştirilmesiyle elde edilen?" → <strong>Affine</strong> | "Türk alfabesiyle Affine'de kaç farklı anahtar?" → <strong>812</strong></div>
+
+  <h3>Modern Simetrik Şifreleme Yöntemleri</h3>
+  <div class="card">
+    <table>
+      <tr><th>Algoritma</th><th>Blok Boyutu</th><th>Anahtar Boyutu</th><th>Not</th></tr>
+      <tr><td><strong>DES</strong></td><td>64 bit</td><td>56 bit</td><td>IBM tarafından geliştirildi. Feistel yapısı. 16 tur. <span class="badge badge-red">Artık güvensiz</span></td></tr>
+      <tr><td><strong>3DES</strong></td><td>64 bit</td><td>112/168 bit</td><td>DES'in üç kez uygulanması. <span class="badge badge-amber">Geçiş dönemi</span></td></tr>
+      <tr><td><strong>AES</strong></td><td>128 bit</td><td>128/192/256 bit</td><td>Tur sayısı: 10/12/14. <span class="badge badge-green">Güncel standart</span></td></tr>
+      <tr><td><strong>IDEA</strong></td><td>64 bit</td><td>128 bit</td><td>1991'de Lai ve Massey tarafından geliştirildi. <span class="badge badge-blue">Modern</span></td></tr>
+      <tr><td><strong>RC4</strong></td><td>—</td><td>Değişken</td><td>Dizi şifreleme algoritmasıdır (blok değil!)</td></tr>
+      <tr><td><strong>Affine</strong></td><td>—</td><td>—</td><td>Klasik şifreleme yöntemidir. <strong>Modern simetrik yöntem sayılmaz!</strong> <span class="badge badge-red">Klasik ❌</span></td></tr>
+    </table>
+  </div>
+  <div class="hl">⚠️ "Modern simetrik şifreleme yöntemlerinden biri değil?" → <strong>Affine Şifreleme</strong> (klasik yöntemdir)</div>
+  <div class="hl">⚠️ "64 bit bloklar kullanan, üzerinde en çok araştırma yapılmış simetrik algoritma?" → <strong>DES</strong></div>
+  <div class="hl">⚠️ "Dizi şifreleme algoritması?" → <strong>RC4</strong></div>
+
+  <h3>AES Algoritması — Tur Yapısı</h3>
+  <div class="card">
+    <table>
+      <tr><th>Adım</th><th>Her Turda?</th><th>Açıklama</th></tr>
+      <tr><td>Bayt Yer Değiştirme (S-Box)</td><td><span class="badge badge-green">Her turda ✅</span></td><td>Durum matrisi S-Box tablosuyla dönüştürülür</td></tr>
+      <tr><td>Satır Kaydırma (ShiftRows)</td><td><span class="badge badge-green">Her turda ✅</span></td><td>Satırlar dairesel olarak kaydırılır</td></tr>
+      <tr><td>Anahtar Ekleme</td><td><span class="badge badge-green">Her turda ✅</span></td><td>Tur anahtarı ile durum matrisi XOR'lanır</td></tr>
+      <tr><td><strong>Sütun Karıştırma (MixColumn)</strong></td><td><span class="badge badge-red">Son tur HARİÇ ✅</span></td><td><strong>Son tur HARİÇ diğer tüm turlarda uygulanır</strong></td></tr>
+    </table>
+    <div class="hl">⚠️ "AES'in son tur hariç diğer tüm turlarda uygulanan işlem?" → <strong>Sütun Karıştırma (MixColumn)</strong></div>
+  </div>
+
+  <h3>Blok Şifreleme Modları</h3>
+  <div class="card">
+    <table>
+      <tr><th>Mod</th><th>Kısaltma</th><th>Açıklama</th></tr>
+      <tr><td><strong>Elektronik Kod Kitabı</strong></td><td>ECB</td><td>En basit mod. Her blok bağımsız şifrelenir. Güvenlik açısından tavsiye edilmez.</td></tr>
+      <tr><td><strong>Şifre Blok Zincirleme</strong></td><td>CBC</td><td>Önceki şifreli metin XOR'lanır. İlk turda rastgele vektör kullanılır.</td></tr>
+      <tr><td><strong>Şifre Geribesleme</strong></td><td>CFB</td><td>Dizi şifreleme moduna benzer.</td></tr>
+      <tr><td><strong>Çıktı Geribesleme</strong></td><td>OFB (OFM)</td><td>Anahtar akışı önceden üretilir.</td></tr>
+      <tr><td><strong>Sayaç Modu</strong></td><td>CTR</td><td>Paralel işleme imkânı sağlar.</td></tr>
+    </table>
+    <div class="hl-red">⚠️ "Blok şifreleme modlarından biri değil?" → <strong>PKI (Açık Anahtar Altyapısı)</strong> ❌ | <strong>BCB</strong> ❌ (kitap sorusundan)</div>
+  </div>
+
+  <h3>Simetrik Şifrelemenin Problemleri & Uygulama Alanları <span class="yeni-badge">📘 Kitap</span></h3>
+  <div class="grid-2">
+    <div class="card" style="border-color:rgba(239,68,68,.3);">
+      <div class="card-title"><div class="dot" style="background:#ef4444"></div>Dezavantajları</div>
+      <ul>
+        <li><strong>Anahtar dağıtım problemi:</strong> n kullanıcı için n×(n-1)/2 anahtar gerekir</li>
+        <li>Aynı anahtar sürekli kullanılırsa güvenlik açığı oluşur → çözüm: <strong>oturum anahtarı</strong></li>
+        <li>Açık anahtar şifrelemeye göre daha az matematiksel işlem</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(34,197,94,.3);">
+      <div class="card-title"><div class="dot" style="background:#22c55e"></div>Uygulama Alanları</div>
+      <ul>
+        <li><strong>Mesaj gizliliği</strong> (en yaygın kullanım)</li>
+        <li><strong>Güvenli veri depolama</strong></li>
+        <li><strong>Kimlik doğrulama</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="hl">⚠️ "Simetrik şifrelemenin en önemli avantajı?" → <strong>Hızlı şifreleme algoritmaları olmaları</strong></div>
+  <div class="hl">⚠️ "En uygun şifreleme algoritmasını seçmek için kullanılan kriterler?" → <strong>Güvenlik, Performans, Kolay kullanılabilirlik</strong> (I, II ve IV)</div>
+
+</div>
+</div>
+
+<!-- ============ ÜNİTE 4 ============ -->
+<div id="u4" class="section">
+<div class="container">
+  <div class="section-header">
+    <div class="section-icon" style="background:linear-gradient(135deg,#22c55e,#14b8a6);">🔑</div>
+    <div><h2>Ünite 4: Açık Anahtar Şifreleme ve Mesaj Doğrulama</h2><span>Güvenlik Servisleri · RSA · Diffie-Hellman · ElGamal · Dijital İmza · Özet Fonksiyonları</span></div>
+  </div>
+
+  <h3>Güvenlik Servisleri</h3>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#4f8ef7"></div>Gizlilik</div>
+      <p>Sadece yetkili kişilerin mesajı okuyabilmesidir. Simetrik şifreleme ile sağlanır.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#22c55e"></div>Mesaj Bütünlüğü</div>
+      <p>Yetkisiz kişilerin iletim halindeki mesaj içeriğinde <strong>değişiklik yapamamasıdır</strong>. Özet fonksiyonları ile sağlanır.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#8b5cf6"></div>İnkâr Edilemezlik</div>
+      <p>Mesajı oluşturan kişinin oluşturduğu mesajı <strong>inkâr edememesidir</strong>. Dijital imza ile sağlanır.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#f59e0b"></div>Kimlik Doğrulama</div>
+      <p>Mesajı oluşturan kişinin kimliğinin onaylanmasıdır. Dijital imza ile sağlanır.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#f97316"></div>Erişim Kontrolü</div>
+      <p>Kullanıcıların <strong>kendilerine verilen yetkiler doğrultusunda</strong> servislerden faydalanmasıdır.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#06b6d4"></div>Kullanılabilirlik</div>
+      <p>Kullanıcıların servisleri <strong>arzu ettikleri zaman kullanabilmesine</strong> imkân verilmesidir.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#ef4444"></div>Fiziksel Güvenlik</div>
+      <p>Donanımın kötü niyetli kişilerce fiziksel zarara uğratılması engellenir. <strong>Donanım güvenlik önlemleri + çevresel faktörler + doğal afetlere karşı koruma.</strong> (Ahmet senaryosu!)</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="dot" style="background:#14b8a6"></div>Denetim</div>
+      <p>Özel durumların kayıt altına alınması. Yanlış işlemin kim tarafından yapıldığının tespiti.</p>
+    </div>
+  </div>
+  <div class="hl-red">⚠️ "Güvenlik servislerinden biri DEĞİL?" → <strong>"İnkâr etme"</strong> ❌ (İnkâr edilemezlik ise güvenlik servislerindendir!)</div>
+  <div class="hl">⚠️ "Ahmet ofisine donanım güvenlik önlemleri aldı, doğal afetlere karşı korudu?" → <strong>Fiziksel Güvenlik</strong></div>
+  <div class="hl">⚠️ "Yetkisiz kişilerin mesaj içeriğini değiştirememesi?" → <strong>Mesaj Bütünlüğü</strong></div>
+
+  <h3>Açık Anahtar Şifreleme</h3>
+  <div class="info-box">Her kullanıcının <strong>birbiriyle ilişkili iki anahtarı</strong> vardır: <strong>Açık anahtar</strong> (herkesle paylaşılabilir) ve <strong>Gizli anahtar</strong> (sadece kullanıcı bilir). Açık anahtar bilgisinden gizli anahtara ulaşmak <strong>hesaplama açısından imkânsızdır</strong>.</div>
+
+  <div class="card" style="margin:16px 0;">
+    <div class="card-title"><div class="dot" style="background:#22c55e"></div>Açık Anahtar Şifrelemenin Kullanım Alanları</div>
+    <div class="grid-2" style="margin-top:10px;">
+      <ul>
+        <li>✅ İnkâr edilemezlik</li>
+        <li>✅ Güvenli veri saklama</li>
+        <li>✅ Kimlik doğrulama</li>
+        <li>✅ Oturum anahtarı paylaşmak</li>
+      </ul>
+      <div class="hl-red"><strong>Açık anahtar şifrelemenin kullanım amacı DEĞİL:</strong><br>Erişim Kontrolü ❌</div>
+    </div>
+  </div>
+
+  <h3>Tek Yönlü Fonksiyonlar & Algoritmalar</h3>
+  <div class="card">
+    <div class="card-title"><div class="dot" style="background:#8b5cf6"></div>Açık Anahtar Şifrelemede Kullanılan Tek Yönlü Fonksiyonlar</div>
+    <div class="grid-3" style="margin-top:10px;">
+      <div style="background:var(--bg3);border-radius:10px;padding:14px;">
+        <div style="color:#c4b5fd;font-weight:700;font-size:13px;">Tam Sayıyı Asal Çarpanlarına Ayırma</div>
+        <p style="font-size:13px;margin-top:6px;"><strong>RSA</strong> algoritmasının temel prensibi. Çarpmak kolay, çarpanlara ayırmak zor.</p>
+      </div>
+      <div style="background:var(--bg3);border-radius:10px;padding:14px;">
+        <div style="color:#93c5fd;font-weight:700;font-size:13px;">Ayrık Logaritma</div>
+        <p style="font-size:13px;margin-top:6px;"><strong>Diffie-Hellman</strong> ve <strong>ElGamal</strong> algoritmaları bu yönteme dayanır.</p>
+      </div>
+      <div style="background:var(--bg3);border-radius:10px;padding:14px;">
+        <div style="color:#67e8f9;font-weight:700;font-size:13px;">Eliptik Eğriler</div>
+        <p style="font-size:13px;margin-top:6px;"><strong>ElGamal</strong> algoritması eliptik eğriler yöntemini kullanarak şifreleme yapar.</p>
+      </div>
+    </div>
+  </div>
+  <div class="hl">⚠️ "Eliptik eğriler yöntemini kullanarak şifreleme yapan?" → <strong>ElGamal</strong></div>
+  <div class="hl">⚠️ "Açık anahtar şifrelemede kullanılan tek yönlü fonksiyon?" → <strong>Tam sayıyı asal çarpanlarına ayırma</strong></div>
+
+  <h3>RSA Algoritması — Hesaplama</h3>
+  <div class="card">
+    <div class="card-title"><div class="dot" style="background:#f59e0b"></div>RSA Anahtar Üretimi Formülleri</div>
+    <p>1977'de <strong>Rivest, Shamir ve Adleman</strong> tarafından geliştirildi. Prensip: <strong>iki büyük sayıyı çarpmanın kolay, büyük sayıyı faktörlerine ayırmanın zor olması.</strong></p>
+    <div class="code-block">
+<span class="cm">// RSA Anahtar Üretimi</span>
+n = p × q                        <span class="cm">← n değeri</span>
+Euler(n) = φ(n) = (p-1) × (q-1)  <span class="cm">← Euler sayısı</span>
+
+<span class="cm">// Sınav örneği 1: p=11, q=17</span>
+n = 11 × 17 = <span class="num">187</span>
+φ(n) = (11-1) × (17-1) = 10 × 16 = <span class="num">160</span>
+
+<span class="cm">// Sınav örneği 2: p=7, q=19</span>
+n = 7 × 19 = <span class="num">133</span>
+φ(n) = (7-1) × (19-1) = 6 × 18 = <span class="num">108</span>
+
+<span class="cm">// Sınav örneği 3: p=5, q=7</span>
+n = 5 × 7 = <span class="num">35</span>
+φ(n) = (5-1) × (7-1) = 4 × 6 = <span class="num">24</span>
+
+<span class="cm">// Kitap örneği: p=13, q=17</span>
+n = 13 × 17 = <span class="num">221</span>
+φ(n) = (13-1) × (17-1) = 12 × 16 = <span class="num">192</span>
+    </div>
+    <div class="hl">⚠️ p=11, q=17 → n = <strong>187</strong> | p=7, q=19 → Euler sayısı = <strong>108</strong></div>
+  </div>
+
+  <h3>Algoritma Karşılaştırması</h3>
+  <div class="card">
+    <table>
+      <tr><th>Algoritma</th><th>Türü</th><th>Dayandığı Prensip</th><th>Kullanım Alanı</th></tr>
+      <tr><td><strong>RSA</strong></td><td><span class="badge badge-blue">Açık anahtar</span></td><td>Büyük sayıyı asal çarpanlara ayırmanın zorluğu</td><td>Dijital imza, anahtar dağıtımı, şifreleme</td></tr>
+      <tr><td><strong>Diffie-Hellman</strong></td><td><span class="badge badge-green">Anahtar değişim</span></td><td>Ayrık logaritma</td><td>Güvenli <strong>oturum anahtarı paylaşımı</strong></td></tr>
+      <tr><td><strong>ElGamal</strong></td><td><span class="badge badge-purple">Açık anahtar</span></td><td>Ayrık logaritma + eliptik eğriler</td><td>Şifreleme ve dijital imza</td></tr>
+      <tr><td><strong>DSA</strong></td><td><span class="badge badge-cyan">Dijital imza</span></td><td>Ayrık logaritma</td><td>Yalnızca dijital imza</td></tr>
+      <tr><td><strong>MD5</strong></td><td><span class="badge badge-amber">Özet</span></td><td>—</td><td>128-bit özet değeri üretir</td></tr>
+      <tr><td><strong>SHA</strong></td><td><span class="badge badge-amber">Özet</span></td><td>—</td><td>Güvenli özet fonksiyonu</td></tr>
+    </table>
+  </div>
+  <div class="hl">⚠️ "İki büyük sayıyı çarpmanın kolay, büyük sayıyı faktörlerine ayırmanın zor olması prensibi?" → <strong>RSA</strong></div>
+  <div class="hl">⚠️ "Diffie-Hellman'ın güvenliği neye dayanır?" → <strong>Ayrık logaritma hesaplanmasının zorluğu</strong></div>
+
+  <h3>Diffie-Hellman — Örnek <span class="yeni-badge">📘 Kitap</span></h3>
+  <div class="card">
+    <p>Anahtar değişim protokolüdür. Kimlik doğrulama <strong>önceden</strong> yapılmalıdır. İki kullanıcı aralarında gizli <strong>oturum anahtarı</strong> oluşturur.</p>
+    <div class="code-block">
+<span class="cm">// p=23, g=5, Can gizli=2, Bora gizli=4</span>
+Can → T = g^a mod p = 5² mod 23 = 2
+Bora → V = g^b mod p = 5⁴ mod 23 = 4
+Can → K = V^a mod p = 4² mod 23 = <span class="num">16</span>
+Bora → K = T^b mod p = 2⁴ mod 23 = <span class="num">16</span>
+<span class="cm">// Her ikisi de aynı K=16 değerini bulur!</span>
+    </div>
+  </div>
+
+  <h3>Dijital İmza</h3>
+  <div class="card">
+    <div class="card-title"><div class="dot" style="background:#ec4899"></div>Dijital İmza — Doğru İfadeler (Sınav Tuzağı!)</div>
+    <table>
+      <tr><th>İfade</th><th>Durum</th></tr>
+      <tr><td><strong>Dijital imza benzersiz olmalıdır.</strong></td><td><span class="badge badge-green">✅ DOĞRU</span></td></tr>
+      <tr><td><strong>Göndericinin dijital imzasının bir kopyasını oluşturabilmesi önlenmelidir.</strong></td><td><span class="badge badge-green">✅ DOĞRU</span></td></tr>
+      <tr><td>Dijital imzanın, imzalanan metinden bağımsız bir örüntüsü olmalıdır.</td><td><span class="badge badge-red">❌ YANLIŞ</span></td></tr>
+      <tr><td>Dijital imzaları üretmek hesaplama açısından karmaşık olmalıdır.</td><td><span class="badge badge-red">❌ YANLIŞ</span></td></tr>
+      <tr><td>Göndericiden gelen imzaları tanımak ve doğrulamak zorlayıcı olmalıdır.</td><td><span class="badge badge-red">❌ YANLIŞ</span></td></tr>
+    </table>
+    <div class="hl">⚠️ "Dijital imza ile ilgili doğru olan?" → <strong>"Dijital imza benzersiz olmalıdır"</strong></div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title"><div class="dot" style="background:#4f8ef7"></div>RSA Dijital İmza Protokolü Adımları <span class="yeni-badge">📘 Kitap</span></div>
+    <ol style="color:var(--text2);font-size:14px;padding-left:20px;line-height:2.1;">
+      <li>Can, RSA anahtarlarını oluşturur ve <strong>açık anahtarını</strong> Bora'ya gönderir.</li>
+      <li>Can, bir <strong>özet fonksiyonu</strong> kullanarak imzalamak istediği metnin özetini hesaplar.</li>
+      <li>Can, <strong>kendi gizli anahtarı</strong> ile ileti özetini şifreler → dijital imza oluşturur.</li>
+      <li>Can hem açık metni hem de dijital imzayı Bora'ya gönderir.</li>
+      <li>Bora, <strong>Can'ın açık anahtarı</strong> ile dijital imzayı çözer.</li>
+      <li>Bora, kendisine gelen metnin özetini hesaplar ve çözdüğü özetle karşılaştırır.</li>
+      <li>Özetler eşitse → mesajın gerçekten Can'dan geldiği doğrulanır.</li>
+    </ol>
+  </div>
+
+  <h3>Özet Fonksiyonları (Hash Functions)</h3>
+  <div class="card">
+    <div class="card-title"><div class="dot" style="background:#14b8a6"></div>Özet Fonksiyonlarının Kullanım Alanları</div>
+    <ul>
+      <li>✅ <strong>Dijital imza oluşturulması</strong></li>
+      <li>✅ <strong>Mesajın iletim sırasında değiştirilip değiştirilmediğinin kontrolü</strong> (bütünlük)</li>
+      <li>✅ <strong>İnternetten indirilen dosyanın tam ve doğru indirildiğinin doğrulanması</strong></li>
+      <li>✅ <strong>Parolaların saklanması</strong></li>
+      <li>❌ <strong>Gizli verinin güvenli saklanması</strong> — Özet fonksiyonunun kullanım alanı <strong>değildir!</strong></li>
+    </ul>
+    <div class="info-box">Özet fonksiyonları: Mesaj uzunluğundan bağımsız, <strong>sabit uzunlukta</strong> çıktı üretir. Tek yönlüdür (özetten orijinal metne ulaşılamaz).</div>
+    <div class="hl">⚠️ "Mesajın yetkisiz kişilerce değiştirilip değiştirilmediğini kontrol eden fonksiyon?" → <strong>Özet Fonksiyonları</strong></div>
+    <div class="hl">⚠️ "Özet fonksiyonlarının kullanım alanlarından biri değil?" → <strong>Gizli verinin güvenli saklanması</strong></div>
+  </div>
+
+  <h3>Simetrik vs Asimetrik Karşılaştırma</h3>
+  <div class="grid-2">
+    <div class="card" style="border-color:rgba(79,142,247,.3);">
+      <div class="card-title"><div class="dot" style="background:#4f8ef7"></div>Simetrik Şifreleme</div>
+      <ul>
+        <li>✅ <strong>Hızlı şifreleme</strong> (bit tabanlı operasyonlar)</li>
+        <li>❌ Anahtar dağıtım problemi var</li>
+        <li>n kullanıcı için n×(n-1)/2 anahtar</li>
+        <li>Mesaj şifrelemek için kullanılır</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(139,92,246,.3);">
+      <div class="card-title"><div class="dot" style="background:#8b5cf6"></div>Asimetrik (Açık Anahtar) Şifreleme</div>
+      <ul>
+        <li>❌ Yavaş şifreleme (matematiksel işlemler)</li>
+        <li>✅ <strong>Anahtar dağıtım problemi yok</strong></li>
+        <li>n kullanıcı için 2n anahtar</li>
+        <li>Oturum anahtarı paylaşımı + dijital imza için</li>
+      </ul>
+    </div>
+  </div>
+  <div class="hl">⚠️ "Simetrik şifrelemenin en önemli avantajı?" → <strong>Hızlı şifreleme algoritmaları olmaları</strong></div>
+
+</div>
+</div>
+
+<!-- ============ QUIZ ============ -->
+<div id="quiz" class="section">
+<div class="container">
+  <div class="section-header">
+    <div class="section-icon" style="background:linear-gradient(135deg,#ec4899,#f43f5e);">🎯</div>
+    <div><h2>Mini Quiz — Vize Hazırlık (30 Soru)</h2><span>Çıkmış sorulardan + kitaptan derlendi · Her soruya tıklayarak cevapla</span></div>
+  </div>
+  <div class="score-box" id="score-display">
+    <div class="score-num" id="score-val">0/30</div>
+    <div class="score-label">Doğru cevapladığın soru sayısı</div>
+  </div>
+  <div id="quiz-area"></div>
+</div>
+</div>
+
+<!-- ============ ANALİZ ============ -->
+<div id="analiz" class="section">
+<div class="container">
+  <div class="section-header">
+    <div class="section-icon" style="background:linear-gradient(135deg,#f59e0b,#ef4444);">📊</div>
+    <div><h2>Sınav Analizi — Çıkmış Sorular</h2><span>3 yıl (2021-22 · 2023-24 · 2024-25) Bahar Dönemi Ara Sınavları</span></div>
+  </div>
+
+  <div class="grid-3" style="margin-bottom:28px;">
+    <div class="card" style="border-color:rgba(239,68,68,.4);background:linear-gradient(135deg,rgba(239,68,68,.07),var(--card));">
+      <div style="font-size:32px;margin-bottom:8px;">🔥</div>
+      <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#f87171;">ÇOK ÇIKAN</div>
+      <div style="font-size:13px;color:var(--text2);margin-top:6px;">LAN/Ağ çeşitleri, Kriptografi tanımı, SNMP ağacı, Simetrik öğeleri, Sezar&DES, Güvenlik servisleri, RSA hesaplama, Dijital imza, Tekrarlayıcı/Router</div>
+    </div>
+    <div class="card" style="border-color:rgba(245,158,11,.4);background:linear-gradient(135deg,rgba(245,158,11,.07),var(--card));">
+      <div style="font-size:32px;margin-bottom:8px;">⚡</div>
+      <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#fbbf24;">ORTA SIKLIK</div>
+      <div style="font-size:13px;color:var(--text2);margin-top:6px;">Topolojiler (Mesh/BUS), FTP/TCP protokolleri, Ağ yönetim çeşitleri, Affine hesaplama, Blok şifreleme modları, ElGamal/Diffie, Özet fonksiyonları, FDDI/UTP</div>
+    </div>
+    <div class="card" style="border-color:rgba(34,197,94,.4);background:linear-gradient(135deg,rgba(34,197,94,.07),var(--card));">
+      <div style="font-size:32px;margin-bottom:8px;">💤</div>
+      <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#4ade80;">AZ ÇIKAN</div>
+      <div style="font-size:13px;color:var(--text2);margin-top:6px;">AES tur yapısı, Sütun karıştırma, RC4, UDP doğru/yanlış, OSI katmanları, XOR hesaplama</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-title" style="font-size:16px;margin-bottom:20px;"><div class="dot" style="background:var(--amber)"></div>Konu Bazlı Frekans Analizi <span style="font-size:12px;color:var(--text3);font-weight:400;margin-left:8px;">(3 yıl toplam)</span></div>
+
+    <div class="bar-row"><div class="bar-label">🏆 LAN / Ağ Çeşitleri (PAN, WAN, İnternet)</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#ef4444,#f97316);"></div></div><div class="bar-count" style="color:#f87171;">9</div></div>
+    <div class="bar-row"><div class="bar-label">🏆 Kriptografi Tanımı</div><div class="bar-track"><div class="bar-fill" style="width:89%;background:linear-gradient(90deg,#ef4444,#f97316);"></div></div><div class="bar-count" style="color:#f87171;">8</div></div>
+    <div class="bar-row"><div class="bar-label">🏆 Simetrik Şifrelemenin Ögeleri (biri değil)</div><div class="bar-track"><div class="bar-fill" style="width:89%;background:linear-gradient(90deg,#ef4444,#f97316);"></div></div><div class="bar-count" style="color:#f87171;">8</div></div>
+    <div class="bar-row"><div class="bar-label">🏆 Güvenlik Servisleri</div><div class="bar-track"><div class="bar-fill" style="width:78%;background:linear-gradient(90deg,#f97316,#f59e0b);"></div></div><div class="bar-count" style="color:#fb923c;">7</div></div>
+    <div class="bar-row"><div class="bar-label">🏆 SNMP Bileşenleri & Ağaç Yapısı</div><div class="bar-track"><div class="bar-fill" style="width:78%;background:linear-gradient(90deg,#f97316,#f59e0b);"></div></div><div class="bar-count" style="color:#fb923c;">7</div></div>
+    <div class="bar-row"><div class="bar-label">⚡ Sezar & DES Şifreleme</div><div class="bar-track"><div class="bar-fill" style="width:67%;background:linear-gradient(90deg,#f59e0b,#eab308);"></div></div><div class="bar-count" style="color:#fbbf24;">6</div></div>
+    <div class="bar-row"><div class="bar-label">⚡ RSA — n ve Euler Hesaplama</div><div class="bar-track"><div class="bar-fill" style="width:67%;background:linear-gradient(90deg,#f59e0b,#eab308);"></div></div><div class="bar-count" style="color:#fbbf24;">6</div></div>
+    <div class="bar-row"><div class="bar-label">⚡ Dijital İmza (doğru ifade)</div><div class="bar-track"><div class="bar-fill" style="width:56%;background:linear-gradient(90deg,#eab308,#84cc16);"></div></div><div class="bar-count" style="color:#fbbf24;">5</div></div>
+    <div class="bar-row"><div class="bar-label">⚡ Ağ Cihazları (Router, Repeater, Switch)</div><div class="bar-track"><div class="bar-fill" style="width:56%;background:linear-gradient(90deg,#eab308,#84cc16);"></div></div><div class="bar-count" style="color:#fbbf24;">5</div></div>
+    <div class="bar-row"><div class="bar-label">⚡ Ağ Yönetim Çeşitleri</div><div class="bar-track"><div class="bar-fill" style="width:56%;background:linear-gradient(90deg,#eab308,#84cc16);"></div></div><div class="bar-count" style="color:#fbbf24;">5</div></div>
+    <div class="bar-row"><div class="bar-label">⚡ FTP / TCP Protokolleri & Katmanları</div><div class="bar-track"><div class="bar-fill" style="width:45%;background:linear-gradient(90deg,#22c55e,#14b8a6);"></div></div><div class="bar-count" style="color:#4ade80;">4</div></div>
+    <div class="bar-row"><div class="bar-label">⚡ Topolojiler (BUS, Mesh, Ring)</div><div class="bar-track"><div class="bar-fill" style="width:45%;background:linear-gradient(90deg,#22c55e,#14b8a6);"></div></div><div class="bar-count" style="color:#4ade80;">4</div></div>
+    <div class="bar-row"><div class="bar-label">⚡ Özet Fonksiyonları</div><div class="bar-track"><div class="bar-fill" style="width:34%;background:linear-gradient(90deg,#14b8a6,#4f8ef7);"></div></div><div class="bar-count" style="color:#4ade80;">3</div></div>
+    <div class="bar-row"><div class="bar-label">⚡ Blok Şifreleme Modları (PKI değil)</div><div class="bar-track"><div class="bar-fill" style="width:34%;background:linear-gradient(90deg,#14b8a6,#4f8ef7);"></div></div><div class="bar-count" style="color:#4ade80;">3</div></div>
+    <div class="bar-row"><div class="bar-label">⚡ Affine Şifreleme (anahtar sayısı)</div><div class="bar-track"><div class="bar-fill" style="width:34%;background:linear-gradient(90deg,#14b8a6,#4f8ef7);"></div></div><div class="bar-count" style="color:#4ade80;">3</div></div>
+    <div class="bar-row"><div class="bar-label">💤 AES Tur Yapısı (sütun karıştırma)</div><div class="bar-track"><div class="bar-fill" style="width:22%;background:linear-gradient(90deg,#4f8ef7,#8b5cf6);"></div></div><div class="bar-count" style="color:#93c5fd;">2</div></div>
+    <div class="bar-row"><div class="bar-label">💤 ElGamal / Diffie-Hellman</div><div class="bar-track"><div class="bar-fill" style="width:22%;background:linear-gradient(90deg,#4f8ef7,#8b5cf6);"></div></div><div class="bar-count" style="color:#93c5fd;">2</div></div>
+    <div class="bar-row"><div class="bar-label">💤 Tek Zamanlı Blok XOR Hesaplama</div><div class="bar-track"><div class="bar-fill" style="width:11%;background:linear-gradient(90deg,#8b5cf6,#ec4899);"></div></div><div class="bar-count" style="color:#c4b5fd;">1</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card" style="border-color:rgba(239,68,68,.3);">
+      <div class="card-title"><div class="dot" style="background:#ef4444"></div>🎯 Kesinlikle Çalış — Her Yıl Çıkıyor</div>
+      <ul style="font-size:14px;color:var(--text2);line-height:2.1;padding-left:18px;">
+        <li><strong style="color:var(--text);">LAN = ilk oluşturulan ağ çeşidi</strong></li>
+        <li><strong style="color:var(--text);">Kriptografi = güvenli iletişim protokollerini tasarlar</strong></li>
+        <li><strong style="color:var(--text);">Simetrik temel ögeler:</strong> Veri bütünlüğü öge değildir</li>
+        <li><strong style="color:var(--text);">SNMP ağacında kasa rengi yok</strong></li>
+        <li><strong style="color:var(--text);">Sezar = en eski ve en basit</strong></li>
+        <li><strong style="color:var(--text);">RSA:</strong> n = p×q, Euler = (p-1)×(q-1)</li>
+        <li><strong style="color:var(--text);">Fiziksel güvenlik</strong> = Ahmet senaryosu</li>
+        <li><strong style="color:var(--text);">Dijital imza benzersiz olmalıdır</strong></li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(34,197,94,.3);">
+      <div class="card-title"><div class="dot" style="background:var(--green)"></div>💡 Klasik Tuzaklar — Her Yıl Yanıltıyor</div>
+      <ul style="font-size:14px;color:var(--text2);line-height:2.1;padding-left:18px;">
+        <li><strong style="color:#fbbf24;">Kriptoanaliz ≠ Kriptografi</strong></li>
+        <li><strong style="color:#fbbf24;">Veri bütünlüğü ≠ simetrik şifreleme ögesi</strong></li>
+        <li><strong style="color:#fbbf24;">Affine ≠ modern simetrik</strong> (klasik yöntemdir)</li>
+        <li><strong style="color:#fbbf24;">PKI ≠ blok şifreleme modu</strong></li>
+        <li><strong style="color:#fbbf24;">Kayıt cihazı (Log) ≠ ağ bileşeni</strong></li>
+        <li><strong style="color:#fbbf24;">Yönlendirme Protokolü ≠ SNMP bileşeni</strong></li>
+        <li><strong style="color:#fbbf24;">İnkâr etme ≠ güvenlik servisi</strong></li>
+        <li><strong style="color:#fbbf24;">Erişim kontrolü ≠ açık anahtar kullanım amacı</strong></li>
+        <li><strong style="color:#fbbf24;">Yönetici Öge ≠ Araç Uygulama</strong> (ikisi farklı!)</li>
+        <li><strong style="color:#fbbf24;">RC4 = dizi şifreleme</strong> (blok değil!)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+const questions = [
+  { q:"Veri iletişiminde paket anahtarlama yönteminin ilk örneği hangisidir?", opts:["UCLA","ARPANET","DARPA","TCP/IP","PSTN"], ans:1, exp:"ARPANET paket anahtarlama yönteminin ilk örneğidir ve İnternet'in atasıdır." },
+  { q:"Oluşturulan ilk ağ çeşidi olan ve ev, okul, iş binaları gibi sınırlı alanları kapsayan ağ hangisidir?", opts:["PAN","MAN","LAN","WAN","VPN"], ans:2, exp:"LAN (Yerel Alan Ağı) — ilk oluşturulan ağ çeşididir." },
+  { q:"Akıllı telefon, tablet, kişisel dijital asistan gibi cihazların oluşturduğu ağ çeşidi hangisidir?", opts:["VPN","MAN","LAN","WAN","PAN"], ans:4, exp:"PAN (Personal Area Network – Kişisel Alan Ağı)." },
+  { q:"Dünyadaki en geniş alan ağı hangisidir?", opts:["Çerçeve aktarıcı","İnternet","İntranet","Jetonlu halka","ADSL"], ans:1, exp:"İnternet dünyanın en büyük WAN (Geniş Alan Ağı)'dır." },
+  { q:"Tüm cihazların birbirine bağlı olduğu ve veri iletiminin alternatif yollar üzerinden yapılabildiği topoloji hangisidir?", opts:["Halka","Yıldız","Ağaç","Örgü","Ortak Yol"], ans:3, exp:"Örgü (Mesh) topolojisinde tüm cihazlar birbirine bağlıdır ve hatalı düğümler veri akışını bozmaz." },
+  { q:"Her bir düğümün bir diğerinin yerini alabildiği ve hatalı düğümlerin veri akışında soruna neden olmadığı ağ topolojisi hangisidir?", opts:["Ortak Yol (BUS)","Yıldız (Star)","Ağaç","Örgü (Mesh)","Halka (Ring)"], ans:3, exp:"Örgü (Mesh) topolojisi — her düğüm alternatif yollarla bağlıdır." },
+  { q:"TCP ve UDP protokollerinin en sık kullanıldığı katman hangisidir?", opts:["Sunum","Ağ","Taşıma","Veri Bağlantı","Oturum"], ans:2, exp:"TCP ve UDP Taşıma (Transport) katmanına ait protokollerdir." },
+  { q:"Ağ üzerinde dosya transferi için kullanılan, güvenli ve eksiksiz iletimi sağlayan protokol hangisidir?", opts:["SIP","FTP","TCP/IP","IP","OSI"], ans:1, exp:"FTP (File Transfer Protocol) dosya transferi için kullanılır." },
+  { q:"IP adresine bakarak paketin hangi arayüzden gönderileceğine karar veren ağ cihazı hangisidir?", opts:["Köprü","Göbek Cihaz","Tekrarlayıcı","Anahtar Cihaz","Yönlendirici"], ans:4, exp:"Yönlendirici (Router) IP adresine bakarak yönlendirme kararı verir." },
+  { q:"Fiziksel olarak kablo mesafesinin sınırlarından dolayı veri taşımayı daha uzak mesafelere ulaştırmak için hangi ağ cihazı kullanılır?", opts:["Tekrarlayıcılar","Köprüler","Anahtar Cihazlar","Yönlendiriciler","Ethernet"], ans:0, exp:"Tekrarlayıcı (Repeater) zayıflayan sinyali güçlendirerek kablo mesafesini uzatır." },
+  { q:"Bant genişliğine göre Cat1, Cat2, Cat3 gibi çeşitleri bulunan, LAN'larda yaygın kullanılan kablo türü hangisidir?", opts:["FTP Kablo","Fiber Optik","Eşmerkezli","UDP Kablo","UTP Kablo"], ans:4, exp:"UTP kablo LAN'larda en yaygın kullanılan kablo türüdür." },
+  { q:"Bağlantı ortamları bağlamında fiber optik kablolar ile kullanılmak üzere geliştirilmiş, yüksek hızlı bir bilgisayar ağı çeşidi hangisidir?", opts:["ATM","FDDI","VPN","Ethernet","Token Ring"], ans:1, exp:"FDDI (Fiber Distributed Data Interface) fiber optik kablolarla çalışmak üzere geliştirilmiştir." },
+  { q:"Ağın arızalarını kaydetmek, raporlamak ve gerekli aksiyonları almak için geliştirilen yönetim çeşidi hangisidir?", opts:["Yapılandırma yönetimi","Hata yönetimi","Güvenlik Yönetimi","Performans yönetimi","Hesaplama yönetimi"], ans:1, exp:"Hata yönetimi ağın arızalarını anlık olarak kayıt eder ve raporlar." },
+  { q:"ADSL hesabının kotasının belirlenmesi hangi ağ yönetim çeşidinin konusudur?", opts:["Hata yönetimi","Performans yönetimi","Yapılandırma yönetimi","Hesaplama yönetimi","Güvenlik yönetimi"], ans:3, exp:"Hesaplama yönetimi ağ kaynaklarının nasıl kullanıldığını (kota, ücretlendirme) yönetir." },
+  { q:"Hata yönetimi ile performans yönetimi arasındaki temel fark nedir?", opts:["Hata sadece yazılım hatalarını kaydeder","Hata ağ performansını ölçer","Hata anlık çalışır; performans uzun vadeli verilerle","Performans sadece hata durumlarını analiz eder","İkisi aynı şeydir"], ans:2, exp:"Hata yönetimi anlık olarak çalışırken, performans yönetimi daha uzun vadeli verilerle çalışır." },
+  { q:"SNMP protokolü kapsamında yer alan temel ögelerden biri değil hangisidir?", opts:["Ağ Yönetim Sistemi","Araç Uygulama","Yönetim Bilgi Üssü","Yönetici Uygulama","Yönlendirme Protokolü"], ans:4, exp:"Yönlendirme Protokolü SNMP bileşeni değildir. SNMP: Araç Uygulama + Yönetici Uygulama + Ağ Yönetim Sistemi." },
+  { q:"SNMP protokolü dahilinde bulunan ağaç yapısında yer ALMAYAN bilgi hangisidir?", opts:["Cihazların ısı değerleri","Cihazların kasa renkleri","Çalışma süreleri","Yönlendirme tabloları","İnternet bağlantı hızları"], ans:1, exp:"Cihazların kasa renkleri SNMP ağaç yapısında yer almaz." },
+  { q:"Aşağıdakilerden hangisi yönetici öge ile yönetilen cihaz arasında köprü görevi görür?", opts:["Yönetim Protokolleri","Rastgele Veri Gönderimi","Çok Katmanlı Şifreleme","Yüksek Hızlı Bağlantılar","Güvenlik Ağları"], ans:0, exp:"Yönetim Protokolleri, yönetici öge ile yönetilen cihaz arasında köprü görevi görür." },
+  { q:"Kullanıcılar arasında güvenli iletişim için algoritma ve protokoller tasarlayan bilim dalı hangisidir?", opts:["Kriptoanaliz","Steganografi","Kriptografi","Tipografi","Sonografi"], ans:2, exp:"Kriptografi güvenli iletişim için gereken algoritmaları ve protokolleri tasarlayan bilim dalıdır." },
+  { q:"Aşağıdakilerden hangisi simetrik şifreleme algoritmalarının temel öğelerinden biri değildir?", opts:["Gizli anahtar","Açık metin","Şifreleme fonksiyonu","Veri bütünlüğü","Şifrelenmiş metin"], ans:3, exp:"Veri bütünlüğü simetrik şifrelemenin temel ögesi değildir." },
+  { q:"Bilinen en eski ve en basit şifreleme yöntemi hangisidir?", opts:["Blok şifreleme","Vigenere","Sezar","Affine","Monoalfabetik"], ans:2, exp:"Sezar şifreleme algoritması bilinen en eski ve en basit şifreleme yöntemidir." },
+  { q:"Alfabede her bir harfin belirli sayıda karakter ötelenmesiyle elde edilen şifreleme hangisidir?", opts:["DES","Vigenere","Affine","Sezar","Monoalfabetik"], ans:3, exp:"Sezar şifreleme her harfi belirli sayıda öteleyerek çalışır." },
+  { q:"Aşağıdakilerden hangisi modern simetrik şifreleme yöntemlerinden biri değildir?", opts:["DES","3DES","AES","IDEA","Affine"], ans:4, exp:"Affine şifreleme klasik bir yöntemdir, modern simetrik şifreleme yöntemi değildir." },
+  { q:"AES şifreleme algoritmasının turlarında hangi işlem, şifreleme işleminin son turu hariç diğer tüm turlarda uygulanır?", opts:["Satır kaydırma katmanı","Anahtar ekleme katmanı","Sütun karıştırma katmanı","Bayt yer değiştirme katmanı","Yayılma katmanı"], ans:2, exp:"Sütun karıştırma katmanı (MixColumn) son tur hariç tüm turlarda uygulanır." },
+  { q:"Blok şifreleme algoritmalarında kullanılan modlardan biri değil hangisidir?", opts:["Şifre Geribesleme (CFB)","Çıktı Geribesleme (OFB)","Açık Anahtar Altyapısı (PKI)","Elektronik Kod Kitabı (ECB)","Şifre Blok Zincirleme (CBC)"], ans:2, exp:"PKI (Açık Anahtar Altyapısı) bir blok şifreleme modu değildir." },
+  { q:"RSA algoritmasında p=11 ve q=17 seçilirse 'n' değeri kaçtır?", opts:["121","143","187","198","221"], ans:2, exp:"n = p × q = 11 × 17 = 187" },
+  { q:"RSA algoritması için p=7, q=19 seçilirse Euler sayısı kaçtır?", opts:["100","108","114","133","152"], ans:1, exp:"Euler(n) = (p-1) × (q-1) = (7-1) × (19-1) = 6 × 18 = 108" },
+  { q:"Dijital imza ile ilgili doğru olan ifade hangisidir?", opts:["Dijital imza benzersiz olmalıdır","Metinden bağımsız örüntüsü olmalıdır","Üretmek hesaplama açısından karmaşık olmalıdır","İmzaları doğrulamak zorlayıcı olmalıdır","Kopyasını oluşturabilmesi önlenmelidir"], ans:0, exp:"'Dijital imza benzersiz olmalıdır' — doğru ifadedir." },
+  { q:"Ahmet ofisindeki bilgisayarları donanım güvenlik önlemleriyle ve doğal afetlere karşı korumuştur. Hangi güvenlik servisini kullanmıştır?", opts:["Denetim","Erişim kontrolü","Fiziksel güvenlik","Kullanılabilirlik","Gizlilik"], ans:2, exp:"Donanım güvenliği ve doğal afet koruması = Fiziksel güvenlik servisi." },
+  { q:"Mesajın iletim sırasında yetkisiz kişilerce değiştirilip değiştirilmediğini kontrol eden fonksiyon türü hangisidir?", opts:["Hibrit şifreleme","Asimetrik şifreleme","Simetrik şifreleme","Özet fonksiyonları","Blok şifreleme"], ans:3, exp:"Özet fonksiyonları mesaj bütünlüğünü kontrol etmek için kullanılır." },
+  { q:"Aşağıdakilerden hangisi açık anahtar şifreleme algoritmaları kullanım amaçlarından biri değildir?", opts:["İnkâr edilemezlik","Güvenli veri saklama","Kimlik doğrulama","Oturum anahtarı paylaşmak","Erişim kontrolü"], ans:4, exp:"Erişim kontrolü, açık anahtar şifreleme algoritmalarının kullanım amacı değildir." },
+];
+
+let score = 0;
+let answered = 0;
+
+function buildQuiz() {
+  const area = document.getElementById('quiz-area');
+  questions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-card';
+    div.innerHTML = `
+      <div class="quiz-q">${i+1}. ${q.q}</div>
+      <div class="quiz-opts">
+        ${q.opts.map((o,j) => `<button class="quiz-opt" onclick="answer(this,${i},${j})">${String.fromCharCode(65+j)}) ${o}</button>`).join('')}
+      </div>
+      <div class="quiz-fb" id="fb${i}"></div>`;
+    area.appendChild(div);
+  });
+}
+
+function answer(btn, qi, oi) {
+  const opts = btn.parentNode.querySelectorAll('.quiz-opt');
+  opts.forEach(o => o.classList.add('disabled'));
+  const fb = document.getElementById('fb'+qi);
+  fb.classList.add('show');
+  if (oi === questions[qi].ans) {
+    btn.classList.add('correct');
+    fb.className = 'quiz-fb show ok';
+    fb.textContent = '✅ Doğru! ' + questions[qi].exp;
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    opts[questions[qi].ans].classList.add('correct');
+    fb.className = 'quiz-fb show fail';
+    fb.textContent = '❌ Yanlış. Doğru cevap: ' + String.fromCharCode(65+questions[qi].ans) + ') — ' + questions[qi].exp;
+  }
+  answered++;
+  document.getElementById('score-display').style.display = 'block';
+  document.getElementById('score-val').textContent = score + '/' + answered;
+}
+
+buildQuiz();
+</script>
+</body>
+</html>
